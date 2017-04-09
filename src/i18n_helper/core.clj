@@ -9,6 +9,7 @@
 (defn read-keys[])
 (def new-path "/Users/will/src/bcam/bcam-services/server/bcam-server/src/main/resources/i18n/messages.properties")
 (def old-path "/Users/will/messages.properties.old")
+(def french-path "/Users/will/src/bcam/bcam-services/server/bcam-server/src/main/resources/i18n/messages_fr.properties")
 (def src-path "/Users/will/src/bcam/bcam-services/server/bcam-server/src")
 
 (defn starts? [line]
@@ -28,13 +29,14 @@
        (filter starts?)
        (map message-key)))
 
-(defn deprecated-keys []
-  (let [new-keys (set(file-to-keys new-path))
-        old-keys (file-to-keys old-path)]
+(defn in-only-this [old-keys new-keys]
     (filter
      (fn [old-key]
        (deprecated? old-key new-keys))
-     old-keys)))
+     old-keys))
+
+(defn deprecated-keys []
+  (in-only-this (set(file-to-keys old-path)) (set(file-to-keys new-path))))
 
 (defn errored? [result]
   (and
@@ -46,7 +48,15 @@
    (= 0 (:exit result))
    (= "" (:err result))))
 
-(defn -main []
+(defn -main[]
+  (println "Only in French")
+  (doseq [key (in-only-this (set (file-to-keys french-path)) (set (file-to-keys new-path)))]
+    (println key))
+  (println "Only in English")
+  (doseq [key (in-only-this (set (file-to-keys new-path)) (set (file-to-keys french-path)))]
+    (println key)))
+
+(defn -not-main []
   (println "************************************************************")
   (doseq [key (deprecated-keys)]
     (let [grep-command (str "grep -R \"" key "\" .")
