@@ -1,10 +1,10 @@
-# i18n-helper
+# i18n-helper; A small utility to help wrangle message.properties files
 
-A Clojure library designed to ... well, that part is up to you.
+I've recently been applying i18n via message.properties files to a Java project. I'm writing this simple utility to report missing keys between languages, ensure languages obey the same order, and other things to help manage the keys in a taxonomy structure.
 
 ## Usage
 
-FIXME
+tbd...
 
 ## License
 
