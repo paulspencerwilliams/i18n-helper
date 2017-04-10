@@ -1,5 +1,6 @@
 (ns i18n-helper.core
-  (:require [clojure.java.shell :refer [sh]]))
+  (:require [clojure.java.shell :refer [sh]])
+  (:gen-class))
 
 (defn foo
   "I don't do a whole lot."
