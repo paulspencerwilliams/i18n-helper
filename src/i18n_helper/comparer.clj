@@ -2,4 +2,5 @@
   (:require [clojure.spec :as s]))
 
 (defn report-missing [bundles]
-  (println (str "Reporting missing for resources")))
+  (doseq [bundle bundles]
+    (println (str "Processing " (:path bundle)))))
