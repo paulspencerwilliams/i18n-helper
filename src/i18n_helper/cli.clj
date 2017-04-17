@@ -56,6 +56,6 @@
     (if exit-message
       (exit (if ok? 0 1) exit-message)
       (case action
-        "report-missing" (report-missing)
+        "report-missing" (report-missing (:messages-path options))
         "report-translations-pending" (report-translations-pending)
         "report-usage" (report-usage)))))
