@@ -7,4 +7,4 @@
                  [org.clojure/tools.cli "0.3.5"]]
   :plugins [[lein-bin "0.3.4"]]
   :bin { :name "i18n-helper" }
-  :main i18n-helper.core)
+  :main i18n-helper.cli)
