@@ -6,4 +6,5 @@
 
 (defn parse-bundles [messages-path]
   {:pre [(s/valid? ::messages-path messages-path)]}
-  (println (str "parsing all files in '" messages-path "'")))
+  (let [absolute-file-paths (->> (io/file ".") (.listFiles) (filter #(.isFile %)) (map (fn [f] (.getAbsolutePath f))))]
+    (map (fn [f] {:path f :contents "Contents"}) absolute-file-paths)))
