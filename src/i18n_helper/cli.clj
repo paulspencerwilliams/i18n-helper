@@ -1,5 +1,6 @@
 (ns i18n-helper.cli
-  (:require [clojure.tools.cli :refer [parse-opts]]
+  (:require [i18n-helper.newcore :refer :all]
+            [clojure.tools.cli :refer [parse-opts]]
             [clojure.string :as string])
   (:gen-class))
 
@@ -55,6 +56,6 @@
     (if exit-message
       (exit (if ok? 0 1) exit-message)
       (case action
-        "report-missing" (println "Reporting missing...")
-        "report-translations-pending"   (println "Reporting translations pending...")
-        "report-usage" (println "Reporting usage..")))))
+        "report-missing" (report-missing)
+        "report-translations-pending" (report-translations-pending)
+        "report-usage" (report-usage)))))
